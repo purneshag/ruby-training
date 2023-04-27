@@ -1,3 +1,5 @@
+# I/O prac -- Miscellaneous- Block, Proc, Lamda, Yield
+
 student_roll = ["pot","top","mop","cat","dog"]
 
 student_roll.each do |student_roll| 

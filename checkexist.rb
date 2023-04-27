@@ -1,4 +1,4 @@
-#Write a program to check if a value exists in an array.
+##Q.2 ---Write a program to check if a value exists in an array.
 
 arr = [ "cow", "elephant", "cat", "dog" ]
 

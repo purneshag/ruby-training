@@ -1,4 +1,4 @@
-#Array
+#Q.1 ---Array
 parray = ['Quill', 'Gamora', 'Rocket', 'Groot', 'Drax']
 puts(parray[0])
 puts(parray[2])

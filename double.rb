@@ -1,4 +1,4 @@
-#Write a method to double all the elements in an array.
+# Q. 4 and 5 --Write a method to double all the elements in an array.
 #
 
 arr1 = ["dog",20,30,"cat",50]

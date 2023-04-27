@@ -1,4 +1,4 @@
-#Write a program to transpose an N*N matrix
+# Q. 8 ---WriteWrite a program to transpose an N*N matrix
 #
 
 
