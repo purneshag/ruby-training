@@ -1,1 +1,1 @@
-This is my Ruby training folder
+This is my Ruby training folder with git
