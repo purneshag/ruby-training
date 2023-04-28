@@ -1,10 +1,16 @@
 # Q. 4 and 5 --Write a method to double all the elements in an array.
 #
-def print_array_double
+def arr_inp
     puts "Enter the elements of the array:"
-    input = gets.chomp.split(',')
-    doubled_arr = input.map { |elem| [elem, elem] }.flatten 
-    puts "Array with elements doubled: #{doubled_arr.inspect}"
+    return gets.chomp.split(',')
 end
 
-print_array_double
+def print_array_double(arr)
+    doubled_arr = arr.map { |elem| [elem, elem] }.flatten
+end
+
+def printarr(arr)
+    puts "Array with elements doubled: #{arr.inspect}"
+end
+
+printarr(print_array_double(arr_inp))

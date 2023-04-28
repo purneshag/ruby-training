@@ -1,4 +1,4 @@
-# Q. 6 Frequency of array elements
+# Q. 6 ---Frequency of array elements
 
 
 names = ["cat", "cat", "dog", "mouse", "panther", "lion", "panther", "tiger"]

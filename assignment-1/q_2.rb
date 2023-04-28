@@ -2,13 +2,11 @@
 
 arr = [ "cow", "elephant", "cat", "dog" ]
 
-searchStr = "cow"
-puts arr.include?(searchStr)?
-"#{searchStr} is present in the array" :
-"#{searchStr} is not present in the array"
+def search(arr,searchStr)
+    puts arr.include?(searchStr)?
+    "#{searchStr} is present in the array" :
+    "#{searchStr} is not present in the array"
+end
 
-
-searchStr = "rat"
-puts arr.include?(searchStr)?
-"#{searchStr} is present in the array" :
-"#{searchStr} is not present in the array"
+search(arr, "rat") 
+search(arr, "cow")
