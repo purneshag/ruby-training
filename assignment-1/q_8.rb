@@ -1,41 +1,39 @@
-# Q. 8 ---WriteWrite a program to transpose an N*N matrix
+# Q. 8 ---Write a program to transpose an N*N matrix
 #
 
+puts "Enter the size of the matrix n: "
+n = gets.chomp.to_i
 
-matrix = Array.new(3){Array.new(3)}
-sum = 0;
-
-printf "Enter elements of MATRIX:\n";
-i = 0;
-while i < 3
-  j = 0;
-  while j < 3
-    printf "ELEMENT [%d][%d]: ", i, j;
-    matrix[i][j] =  gets.chomp.to_i;
-    j += 1;
+matrix = []
+n.times do |i|
+  row = []
+  n.times do |j|
+    print "Enter element #{i+1},#{j+1}: "
+    element = gets.chomp.to_i
+    row << element
   end
-  i += 1;
+  matrix << row
 end
 
-printf "MATRIX:\n";
-i = 0;
-while i < 3
-  j = 0;
-  while j < 3
-    print matrix[i][j]," ";
-    j += 1;
+puts "Original matrix:"
+n.times do |i|
+  n.times do |j|
+    print "#{matrix[i][j]} "
   end
-  i += 1;
-  print "\n";
+  puts
 end
 
-printf "Transpose of matrix:\n";
-i = 0;
-while i < 3
-  j = 0;
-  while j < 3
-    print matrix[j][i]," ";
-    j += 1;    end
-  i += 1;
-  print "\n";
+n.times do |i|
+  (i+1...n).each do |j|
+    matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+  end
+end
+
+
+puts "Transposed matrix:"
+n.times do |i|
+  n.times do |j|
+    print "#{matrix[i][j]} "
+  end
+  puts
 end

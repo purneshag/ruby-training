@@ -1,28 +1,10 @@
 # Q. 4 and 5 --Write a method to double all the elements in an array.
 #
-
-arr1 = ["dog",20,30,"cat",50]
-arr2 = arr1
-
-s = arr1.size + arr2.size
-arr3 = Array.new(s)
-
-count = 0
-count1 = 0
-
-while count < s
-    if count < arr1.size
-        arr3[count] = arr1[count]
-    else
-        arr3[count] = arr2[count1]
-        count1 += 1
-    end
-    count += 1
+def print_array_double
+    puts "Enter the elements of the array:"
+    input = gets.chomp.split(',')
+    doubled_arr = input.map { |elem| [elem, elem] }.flatten 
+    puts "Array with elements doubled: #{doubled_arr.inspect}"
 end
 
-print "Merged array: \n"
-i = 0;
-while i < s
-    print arr3[i]," "
-    i += 1
-end
+print_array_double
