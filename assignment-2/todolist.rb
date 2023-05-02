@@ -5,7 +5,7 @@ class Task
       @name = name
       @description = description
       @status = status
-      @timestamp = Time.now
+      @timestamp = Time.now.strftime("%d/%m/%Y - %H:%M")
     end
   end
   
@@ -21,30 +21,38 @@ class Task
       name = gets.chomp
       puts "Enter task description:"
       description = gets.chomp
+      <<-DOC 
+      puts "Enter multiple lines of text (press Ctrl+D or Ctrl+Z to finish):"
+      description = []
+      while (line = gets.chomp) != ""
+        description << line
+      end
+      DOC
       status = "todo"
       task = Task.new(name, description, status)
       @tasks << task
       puts "Task added!"
     end
     
-    def edit_task
+    def update_task_status
+      display_tasks(3, 1, 1)
       puts "Enter task index:"
       index = gets.chomp.to_i
       if index >= @tasks.length
         puts "Invalid task index."
         return
       end
-      puts "Enter new task name (or press enter to skip):"
-      name = gets.chomp
-      puts "Enter new task description (or press enter to skip):"
-      description = gets.chomp
-      if name != ""
-        @tasks[index].name = name
+      puts "Enter 1 to update todo to done"
+      
+      choice = gets.chomp.to_i
+      case choice
+      when 1
+        @tasks[index].status = "done"
+        puts "Status updated"
+      else
+        puts "Status not updated"
+        return
       end
-      if description != ""
-        @tasks[index].description = description
-      end
-      puts "Task edited!"
     end
     
     def delete_task
@@ -56,9 +64,10 @@ class Task
       end
       @tasks.delete_at(index)
       puts "Task deleted!"
+      
     end
     
-    def display_tasks(filter, sort)
+    def display_tasks(filter, sort, display_type)
       filtered_tasks = []
       case filter
       when 1
@@ -81,36 +90,69 @@ class Task
         puts "Invalid sort."
         return
       end
-      sorted_tasks.each_with_index do |task, index|
-        puts "#{index}: #{task.name} (#{task.description}) - #{task.status} (#{task.timestamp})"
+      
+      if display_type == 0
+        sorted_tasks.each_with_index do |task, index|
+          puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
+        end
+      elsif display_type == 1
+        puts "Enter index to expand"
+        index = gets.chomp.to_i
+        sorted_tasks.each_with_index do |task, index|
+          puts "#{index}: Title: #{task.name} Description: (#{task.description}) - Status: #{task.status} Created time: (#{task.timestamp})"
+        end
+      elsif display_type == 2
+        sorted_tasks = tasks.slice(0,5)
+        sorted_tasks.each_with_index do |task, index|
+          puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
+        end
+        
       end
+      todo_count = tasks.count { |task| task.status == "todo" }
+      done_count = tasks.count { |task| task.status == "done" }
+
+      puts "TODO tasks: #{todo_count}"
+      puts "DONE tasks: #{done_count}"
+      puts "Total Tasks: #{todo_count + done_count} " 
     end
   end
   
   todo_list = ToDoList.new
   
   loop do
-    puts "What do you want to do?"
+    puts "Tasks in the list"
+    todo_list.display_tasks(3, 1, 2)
+    puts "Actions"
     puts "1. Add task"
-    puts "2. Edit task"
+    puts "2. Update task status"
     puts "3. Delete task"
     puts "4. Display tasks"
-    puts "5. Quit"
+    puts "5. Display tasks with filter"
+    puts "6. Expand task"
+    puts "7. Quit"
+    puts "Enter Action"
     choice = gets.chomp.to_i
     case choice
     when 1
       todo_list.add_task
     when 2
-      todo_list.edit_task
+      todo_list.update_task_status
     when 3
       todo_list.delete_task
     when 4
+      todo_list.display_tasks(3, 1, 0)
+    when 5
       puts "Filter by: 1. todo, 2. done, 3. all"
       filter = gets.chomp.to_i
       puts "Sort by: 1. created first, 2. created last"
       sort = gets.chomp.to_i
-      todo_list.display_tasks(filter, sort)
-    when 5
+      todo_list.display_tasks(filter, sort, 0)
+    # when 6 expand
+    when 6
+      todo_list.display_tasks(3, 1, 1)
+      
+      
+    when 7
       break
     else
       puts "Invalid choice."
