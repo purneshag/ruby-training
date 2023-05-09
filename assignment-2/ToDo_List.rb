@@ -1,6 +1,3 @@
-require_relative 'variables.rb'
-
-
 class ToDoList
   attr_accessor :tasks
       
