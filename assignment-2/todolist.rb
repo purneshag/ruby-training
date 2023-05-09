@@ -22,8 +22,8 @@ class Task
       description = []
       puts "Enter description (enter 'quit' or 'exit' to stop): "
       loop do
-        description_line = gets.chomp
-        break if description_line == "quit" || description_line == "exit"
+        description_line = gets.chomp.downcase
+        break if description_line.match?(/^(exit|quit)$/i)
         description << description_line
       end
       
@@ -99,9 +99,9 @@ class Task
         puts "==>Enter index to expand"
         index = gets.chomp.to_i
         puts "---------------------------------------------"
-        sorted_tasks[index] do |task, index|
-          puts "#{index}: Title: #{task.name[index]} Description: (#{task.description[index]}) - Status: #{task.status[index]} Created time: (#{task.timestamp[index]})"
-        end
+        
+        puts "#{index}: Title: #{@tasks[index].name} Description: (#{@tasks[index].description}) - Status: #{@tasks[index].status} Created time: (#{@tasks[index].timestamp})"
+        
       elsif display_type == 2
         sorted_tasks = tasks.slice(0,5)
         sorted_tasks.each_with_index do |task, index|
