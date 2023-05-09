@@ -14,7 +14,7 @@ class ToDoList
     puts "Task added!"
   end
       
-  def update_task_status(index, choice)
+  def update_task_status(index, choice = 1)
     case choice
     when 1
       @tasks[index].status = "done"
@@ -35,7 +35,7 @@ class ToDoList
     @tasks.delete_at(index)      
   end
      
-  def display_tasks(filter, sort, display_type)
+  def display_tasks(filter = 3, sort = 1, display_type = 2)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
