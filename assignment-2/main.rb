@@ -1,11 +1,12 @@
 require_relative 'ToDo_List'
 require_relative 'Task_init'
+require_relative 'variables'
 
 todo_list = ToDoList.new
 loop do
   puts "==================BEGIN======================"
   puts "Tasks in the list"
-  todo_list.display_tasks(3, 1, 2)
+  todo_list.display_tasks($flt_all, $str_ascending, $d_type_top)
   puts "Actions:"
   puts "1. Add task"
   puts "2. Update task status"
@@ -30,7 +31,7 @@ loop do
     end
     todo_list.add_task(name, description)
   when 2
-    todo_list.display_tasks(3, 1, 0)
+    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
     puts "==>Enter task index:"
     index = gets.chomp.to_i
     if index >= todo_list.tasks.length
@@ -41,24 +42,23 @@ loop do
     choice = gets.chomp.to_i
     todo_list.update_task_status(index,choice)
   when 3
-    todo_list.display_tasks(3, 1, 0)
+    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
     puts "==>Enter task index:"
     index = gets.chomp.to_i
     todo_list.delete_task(index)
   when 4
-    todo_list.display_tasks(3, 1, 0)
+    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
   when 5
     puts "Filter by: 1. todo, 2. done, 3. all"
     filter = gets.chomp.to_i
     puts "Sort by: 1. created first, 2. created last"
     sort = gets.chomp.to_i
-    todo_list.display_tasks(filter, sort, 0)
+    todo_list.display_tasks(filter, sort, $d_type_all_summary)
   when 6
-    todo_list.display_tasks(3, 1, 1)
+    todo_list.display_tasks($flt_all, $str_ascending, $d_type_expand)
   when 7
     break
   else
     puts "Invalid choice."
   end
 end
-  

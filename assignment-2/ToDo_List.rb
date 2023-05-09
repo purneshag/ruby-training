@@ -1,4 +1,5 @@
-require_relative 'Task_init'
+require_relative 'variables.rb'
+
 
 class ToDoList
   attr_accessor :tasks
@@ -8,13 +9,11 @@ class ToDoList
   end
      
   def add_task(name, description)
-    status = "todo"
-    task = Task.new(name, description, status)
-    @tasks << task
+    @tasks << Task.new(name, description, status = "todo")
     puts "Task added!"
   end
       
-  def update_task_status(index, choice = 1)
+  def update_task_status(index, choice = ch_done)
     case choice
     when 1
       @tasks[index].status = "done"
@@ -35,7 +34,7 @@ class ToDoList
     @tasks.delete_at(index)      
   end
      
-  def display_tasks(filter = 3, sort = 1, display_type = 2)
+  def display_tasks(filter = $flt_all, sort = $str_ascending, display_type = $d_type_top)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
