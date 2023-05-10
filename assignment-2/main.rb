@@ -1,12 +1,12 @@
-require_relative 'ToDo_List'
-require_relative 'Task_init'
-require_relative 'variables'
+require_relative 'List'
+require_relative 'Tasks'
+require_relative 'constants'
 
-todo_list = ToDoList.new
+todo_list = Todolist.new
 loop do
   puts "==================BEGIN======================"
   puts "Tasks in the list"
-  todo_list.display_tasks($flt_all, $str_ascending, $d_type_top)
+  todo_list.display_tasks(MyConstants::FLT_ALL, MyConstants::STR_ASCENDING, MyConstants::D_TYPE_TOP)
   puts "Actions:"
   puts "1. Add task"
   puts "2. Update task status"
@@ -31,31 +31,29 @@ loop do
     end
     todo_list.add_task(name, description)
   when 2
-    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
+    todo_list.display_tasks(MyConstants::FLT_ALL, MyConstants::STR_ASCENDING, MyConstants::D_TYPE_ALL_SUMMARY)
     puts "==>Enter task index:"
     index = gets.chomp.to_i
     if index >= todo_list.tasks.length
       puts "Invalid task index."
       return
     end
-    puts "==>Enter 1 to update todo to done"
-    choice = gets.chomp.to_i
-    todo_list.update_task_status(index,choice)
+    todo_list.update_task_status_done(index)
   when 3
-    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
+    todo_list.display_tasks(MyConstants::FLT_ALL, MyConstants::STR_ASCENDING, MyConstants::D_TYPE_ALL_SUMMARY)
     puts "==>Enter task index:"
-    index = gets.chomp.to_i
+    index = gets.chomp.to_i    
     todo_list.delete_task(index)
   when 4
-    todo_list.display_tasks($flt_all, $str_ascending, $d_type_all_summary)
+    todo_list.display_tasks(MyConstants::FLT_ALL, MyConstants::STR_ASCENDING, MyConstants::D_TYPE_ALL_SUMMARY)
   when 5
     puts "Filter by: 1. todo, 2. done, 3. all"
     filter = gets.chomp.to_i
     puts "Sort by: 1. created first, 2. created last"
     sort = gets.chomp.to_i
-    todo_list.display_tasks(filter, sort, $d_type_all_summary)
+    todo_list.display_tasks(filter, sort, MyConstants::D_TYPE_ALL_SUMMARY)
   when 6
-    todo_list.display_tasks($flt_all, $str_ascending, $d_type_expand)
+    todo_list.display_tasks(MyConstants::FLT_ALL, MyConstants::STR_ASCENDING, MyConstants::D_TYPE_EXPAND)
   when 7
     break
   else

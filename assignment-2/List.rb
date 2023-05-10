@@ -1,4 +1,4 @@
-class ToDoList
+class Todolist
   attr_accessor :tasks
       
   def initialize
@@ -6,32 +6,22 @@ class ToDoList
   end
      
   def add_task(name, description)
-    @tasks << Task.new(name, description, status = "todo")
+    @tasks << Task.new(name, description)
     puts "Task added!"
   end
       
-  def update_task_status(index, choice = ch_done)
-    case choice
-    when 1
+  def update_task_status_done(index)
       @tasks[index].status = "done"
       puts "Status updated"
-    else
-      puts "Status not updated"
-      return
-    end
   end
    
   def delete_task(index)
-    if index >= @tasks.length
-      puts "Invalid task index."
-      return
-    end
     puts "Deleted task is: "
     puts @tasks[index].name
     @tasks.delete_at(index)      
   end
      
-  def display_tasks(filter = $flt_all, sort = $str_ascending, display_type = $d_type_top)
+  def display_tasks(filter = MyConstants::FLT_ALL, sort = MyConstants::STR_ASCENDING, display_type =MyConstants::D_TYPE_TOP)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
