@@ -21,7 +21,7 @@ class Todolist
     @tasks.delete_at(index)      
   end
      
-  def display_tasks(filter = MyConstants::FLT_ALL, sort = MyConstants::STR_ASCENDING, display_type =MyConstants::D_TYPE_TOP)
+  def display_tasks(filter = Constants::FILTER_ALL, sort = Constants::SORT_ASCENDING, display_type =Constants::DISPLAY_TYPE_TOP)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
