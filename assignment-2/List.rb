@@ -50,16 +50,27 @@ class Todolist
         puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
       end
     elsif display_type == 1
-      puts "==>Enter index to expand"
-      index = gets.chomp.to_i
-      puts "---------------------------------------------"
-      puts "#{index}: Title: #{@tasks[index].name} Description: (#{@tasks[index].description}) - Status: #{@tasks[index].status} Created time: (#{@tasks[index].timestamp})" 
+      display_expand() 
     elsif display_type == 2
-      sorted_tasks = tasks.slice(0,5)
-      sorted_tasks.each_with_index do |task, index|
-        puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
-      end
+      display_tasks_top_five()
     end
+    diaplay_count_summary()
+  end
+  
+  def display_expand
+    puts "==>Enter index to expand"
+    index = gets.chomp.to_i
+    puts "---------------------------------------------"
+    puts "#{index}: Title: #{@tasks[index].name} Description: (#{@tasks[index].description}) - Status: #{@tasks[index].status} Created time: (#{@tasks[index].timestamp})"
+  end
+  def display_tasks_top_five()
+    sorted_tasks = tasks.slice(0,5)
+    sorted_tasks.each_with_index do |task, index|
+      puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
+    end
+  end
+
+  def diaplay_count_summary
     todo_count = tasks.count { |task| task.status == "todo" }
     done_count = tasks.count { |task| task.status == "done" }
     puts "---------------------------------------------"
