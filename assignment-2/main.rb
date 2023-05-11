@@ -9,10 +9,10 @@ loop do
   todo_list.display_tasks(Constants::FILTER_ALL, Constants::SORT_ASCENDING, Constants::DISPLAY_TYPE_TOP)
   puts "Actions:"
   puts "1. Add task"
-  puts "2. Update task status"
+  puts "2. Update task status to done"
   puts "3. Delete task"
   puts "4. Display tasks"
-  puts "5. Display tasks with filter"
+  puts "5. Display tasks with filters"
   puts "6. Expand task"
   puts "7. Quit"
   puts "============================================="

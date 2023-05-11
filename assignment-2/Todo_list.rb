@@ -46,24 +46,29 @@ class Todolist
       return
     end
     if display_type == 0
-      sorted_tasks.each_with_index do |task, index|
-        puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
-      end
+      display_all_tasks_summary
     elsif display_type == 1
-      display_expand() 
+      display_expand
     elsif display_type == 2
-      display_tasks_top_five()
+      display_tasks_top_five
     end
-    diaplay_count_summary()
+    diaplay_count_summary
   end
   
+  def display_all_tasks_summary
+    sorted_tasks.each_with_index do |task, index|
+      puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
+    end
+  end
+
   def display_expand
     puts "==>Enter index to expand"
     index = gets.chomp.to_i
     puts "---------------------------------------------"
     puts "#{index}: Title: #{@tasks[index].name} Description: (#{@tasks[index].description}) - Status: #{@tasks[index].status} Created time: (#{@tasks[index].timestamp})"
   end
-  def display_tasks_top_five()
+  
+  def display_tasks_top_five
     sorted_tasks = tasks.slice(0,5)
     sorted_tasks.each_with_index do |task, index|
       puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
