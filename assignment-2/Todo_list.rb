@@ -2,35 +2,35 @@ class Todolist
   attr_accessor :tasks
       
   def initialize
-    @tasks = []
+    @@tasks = []
   end
      
   def add_task(name, description)
-    @tasks << Task.new(name, description)
+    @@tasks << Task.new(name, description)
     puts "Task added!"
   end
       
   def update_task_status_done(index)
-      @tasks[index].status = "done"
+      @@tasks[index].status = "done"
       puts "Status updated"
   end
    
   def delete_task(index)
     puts "Deleted task is: "
-    puts @tasks[index].name
-    @tasks.delete_at(index)      
+    puts @@tasks[index].name
+    @@tasks.delete_at(index)      
   end
      
-  def display_tasks(filter = Constants::FILTER_ALL, sort = Constants::SORT_ASCENDING, display_type =Constants::DISPLAY_TYPE_TOP)
+  def display_tasks(filter = Constants::Task_filter::FILTER_ALL, sort = Constants::Task_sort::SORT_ASCENDING, display_type =Constants::Task_display::DISPLAY_TYPE_ALL_SUMMARY)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
     when 1
-      filtered_tasks = @tasks.select { |task| task.status == "todo" }
+      filtered_tasks = @@tasks.select { |task| task.status == "todo" }
     when 2
-      filtered_tasks = @tasks.select { |task| task.status == "done" }
+      filtered_tasks = @@tasks.select { |task| task.status == "done" }
     when 3
-      filtered_tasks = @tasks
+      filtered_tasks = @@tasks
     else
       puts "Invalid filter."
       return
@@ -56,6 +56,7 @@ class Todolist
   end
   
   def display_all_tasks_summary
+    sorted_tasks = @@tasks
     sorted_tasks.each_with_index do |task, index|
       puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
     end
@@ -65,19 +66,19 @@ class Todolist
     puts "==>Enter index to expand"
     index = gets.chomp.to_i
     puts "---------------------------------------------"
-    puts "#{index}: Title: #{@tasks[index].name} Description: (#{@tasks[index].description}) - Status: #{@tasks[index].status} Created time: (#{@tasks[index].timestamp})"
+    puts "#{index}: Title: #{@@tasks[index].name} Description: (#{@@tasks[index].description}) - Status: #{@@tasks[index].status} Created time: (#{@@tasks[index].timestamp})"
   end
   
   def display_tasks_top_five
-    sorted_tasks = tasks.slice(0,5)
+    sorted_tasks = @@tasks.slice(0,5)
     sorted_tasks.each_with_index do |task, index|
       puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
     end
   end
 
   def diaplay_count_summary
-    todo_count = tasks.count { |task| task.status == "todo" }
-    done_count = tasks.count { |task| task.status == "done" }
+    todo_count = @@tasks.count { |task| task.status == "todo" }
+    done_count = @@tasks.count { |task| task.status == "done" }
     puts "---------------------------------------------"
     puts "TODO tasks: #{todo_count}"
     puts "DONE tasks: #{done_count}"
