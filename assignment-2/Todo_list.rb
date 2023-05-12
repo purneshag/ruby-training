@@ -9,7 +9,16 @@ class Todolist
     @@tasks << Task.new(name, description)
     puts "Task added!"
   end
-      
+   
+  def check_for_valid_index(index)
+    if index >= @@tasks.length
+      puts "Invalid task index."
+      return false
+    else 
+      return true
+    end
+  end
+
   def update_task_status_done(index)
       @@tasks[index].status = "done"
       puts "Status updated"

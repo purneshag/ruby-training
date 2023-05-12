@@ -34,13 +34,17 @@ loop do
     todo_list.display_tasks()
     puts "==>Enter task index:"
     index = gets.chomp.to_i
-    
-    todo_list.update_task_status_done(index)
+    if todo_list.check_for_valid_index(index)
+      todo_list.update_task_status_done(index)
+    end
+
   when 3
     todo_list.display_tasks()
     puts "==>Enter task index:"
-    index = gets.chomp.to_i   
-    todo_list.delete_task(index)
+    index = gets.chomp.to_i 
+    if todo_list.check_for_valid_index(index)
+      todo_list.delete_task(index)
+    end
   when 4
     todo_list.display_tasks()
   when 5
