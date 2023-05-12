@@ -55,7 +55,9 @@ class Todolist
       return
     end
     if display_type == 0
-      display_all_tasks_summary
+      sorted_tasks.each_with_index do |task, index|
+        puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
+      end
     elsif display_type == 1
       display_expand
     elsif display_type == 2
@@ -64,18 +66,13 @@ class Todolist
     diaplay_count_summary
   end
   
-  def display_all_tasks_summary
-    sorted_tasks = @@tasks
-    sorted_tasks.each_with_index do |task, index|
-      puts "#{index}: #{task.name} - #{task.status} (#{task.timestamp})"
-    end
-  end
-
   def display_expand
     puts "==>Enter index to expand"
     index = gets.chomp.to_i
-    puts "---------------------------------------------"
-    puts "#{index}: Title: #{@@tasks[index].name} Description: (#{@@tasks[index].description}) - Status: #{@@tasks[index].status} Created time: (#{@@tasks[index].timestamp})"
+    if check_for_valid_index(index)
+      puts "---------------------------------------------"
+      puts "#{index}: Title: #{@@tasks[index].name} Description: (#{@@tasks[index].description}) - Status: #{@@tasks[index].status} Created time: (#{@@tasks[index].timestamp})"
+    end
   end
   
   def display_tasks_top_five
