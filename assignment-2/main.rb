@@ -1,5 +1,5 @@
 require_relative 'todo_list'
-require_relative 'tasks'
+require_relative 'task'
 require_relative 'constants'
 
 todo_list = ToDoList.new
