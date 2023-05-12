@@ -31,7 +31,7 @@ loop do
     end
     todo_list.add_task(name, description)
   when 2
-    todo_list.display_tasks()
+    todo_list.display_tasks
     puts "==>Enter task index:"
     index = gets.chomp.to_i
     if todo_list.check_for_valid_index(index)
@@ -39,14 +39,14 @@ loop do
     end
 
   when 3
-    todo_list.display_tasks()
+    todo_list.display_tasks
     puts "==>Enter task index:"
     index = gets.chomp.to_i 
     if todo_list.check_for_valid_index(index)
       todo_list.delete_task(index)
     end
   when 4
-    todo_list.display_tasks()
+    todo_list.display_tasks
   when 5
     puts "Filter by: 1. todo, 2. done, 3. all"
     filter = gets.chomp.to_i
