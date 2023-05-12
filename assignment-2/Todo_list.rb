@@ -1,4 +1,4 @@
-class Todolist
+class ToDoList
   attr_accessor :tasks
       
   def initialize

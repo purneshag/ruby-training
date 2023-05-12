@@ -1,8 +1,8 @@
-require_relative 'Todo_list'
-require_relative 'Tasks'
+require_relative 'todo_list'
+require_relative 'tasks'
 require_relative 'constants'
 
-todo_list = Todolist.new
+todo_list = ToDoList.new
 loop do
   puts "==================BEGIN======================"
   puts "Tasks in the list"
