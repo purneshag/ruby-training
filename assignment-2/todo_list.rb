@@ -30,14 +30,14 @@ class ToDoList
     @@tasks.delete_at(index)      
   end
      
-  def display_tasks(filter = Constants::Task_filter::FILTER_ALL, sort = Constants::Task_sort::SORT_ASCENDING, display_type =Constants::Task_display::DISPLAY_TYPE_ALL_SUMMARY)
+  def display_tasks(filter = Constants::Filter::ALL, sort = Constants::Sort::ASCENDING, display_type = Constants::Display::ALL_SUMMARY)
     puts "---------------------------------------------"
     filtered_tasks = []
     case filter
     when 1
-      filtered_tasks = @@tasks.select { |task| task.status == "todo" }
+      filtered_tasks = @@tasks.select {|task| task.status == "todo"}
     when 2
-      filtered_tasks = @@tasks.select { |task| task.status == "done" }
+      filtered_tasks = @@tasks.select {|task| task.status == "done"}
     when 3
       filtered_tasks = @@tasks
     else
@@ -47,9 +47,9 @@ class ToDoList
     sorted_tasks = []
     case sort
     when 1
-      sorted_tasks = filtered_tasks.sort_by { |task| task.timestamp }
+      sorted_tasks = filtered_tasks.sort_by {|task| task.timestamp}
     when 2
-      sorted_tasks = filtered_tasks.sort_by { |task| task.timestamp }.reverse
+      sorted_tasks = filtered_tasks.sort_by {|task| task.timestamp}.reverse
     else
       puts "Invalid sort."
       return

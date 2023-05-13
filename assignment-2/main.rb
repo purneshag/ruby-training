@@ -6,7 +6,7 @@ todo_list = ToDoList.new
 loop do
   puts "==================BEGIN======================"
   puts "Tasks in the list"
-  todo_list.display_tasks(Constants::Task_filter::FILTER_ALL, Constants::Task_sort::SORT_ASCENDING, Constants::Task_display::DISPLAY_TYPE_TOP)
+  todo_list.display_tasks(Constants::Filter::ALL, Constants::Sort::ASCENDING, Constants::Display::TOP)
   puts "Actions:"
   puts "1. Add task"
   puts "2. Update task status to done"
@@ -52,9 +52,9 @@ loop do
     filter = gets.chomp.to_i
     puts "Sort by: 1. created first, 2. created last"
     sort = gets.chomp.to_i
-    todo_list.display_tasks(filter, sort, Constants::Task_display::DISPLAY_TYPE_ALL_SUMMARY)
+    todo_list.display_tasks(filter, sort, Constants::Display::ALL_SUMMARY)
   when 6
-    todo_list.display_tasks(Constants::Task_filter::FILTER_ALL, Constants::Task_sort::SORT_ASCENDING, Constants::Task_display::DISPLAY_TYPE_EXPAND)
+    todo_list.display_tasks(Constants::Filter::ALL, Constants::Sort::ASCENDING, Constants::Display::EXPAND)
   when 7
     break
   else
